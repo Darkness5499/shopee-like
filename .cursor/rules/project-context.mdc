@@ -1,0 +1,10 @@
+---
+description: Maintain the Shopee-like project's workflow and persistent context across sessions.
+alwaysApply: true
+---
+
+# Project context
+
+Read and follow the repository's `AGENTS.md` for startup, canonical sources, iterative readiness, and handoff updates.
+Read `docs/PROJECT_CONTEXT.md` and the relevant entry in `docs/WORK_ITEMS.md` before project work.
+Use those maintained files for current status; do not infer acceptance or completion from the presence of documents.
