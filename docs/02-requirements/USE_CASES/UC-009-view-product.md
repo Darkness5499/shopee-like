@@ -1,5 +1,8 @@
 # UC-009 — View a Product and its purchase conditions
 
+- Implementation status: Not implemented — minimal read-only demonstration support for Part 1; advanced discovery features deferred.
+- Planning authority: [Learning plan](../../01-product/LEARNING_PLAN.md); document maturity below is separate from implementation status.
+
 ## Metadata
 
 - Status: Draft; public detail and per-SKU purchase-eligibility policy is Proposed under OQ-019. Accepted review-related hiding remains binding under BR-PROD-002.

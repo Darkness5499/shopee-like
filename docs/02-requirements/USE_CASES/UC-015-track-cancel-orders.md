@@ -1,5 +1,8 @@
 # UC-015 — Track, cancel, and complete a purchase
 
+- Implementation status: Not implemented — deferred; closed for current work. Resume only when the owner selects a later part.
+- Planning authority: [Learning plan](../../01-product/LEARNING_PLAN.md); document maturity below is separate from implementation status.
+
 ## Metadata
 
 - Status: Draft specification; cancellation scope, deadlines, compensation obligations, and completion lifecycle behavior are **Proposed**, pending OQ-007/OQ-008/OQ-009/OQ-010/OQ-015. Buyer completion and auto-completion are drafted under BR-AFTERSALES-001.

@@ -1,5 +1,8 @@
 # UC-005 — Submit a Product for review
 
+- Implementation status: Not implemented — active core design slice (Part 1).
+- Planning authority: [Learning plan](../../01-product/LEARNING_PLAN.md); document maturity below is separate from implementation status.
+
 ## Metadata
 
 - Status: Draft; state codes and validation boundaries remain Proposed/Open. Repeat/resubmission behavior is Accepted.

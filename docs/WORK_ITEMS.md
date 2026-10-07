@@ -1,5 +1,9 @@
 # Work Items, Risks, and Readiness
 
+## Current work selection — 2026-10-07
+
+WI-007 is narrowed to Part 1 UC-004/005/006, minimal UC-008/009 reads and scoped UC-024 audit; Phase 3 is In progress with [publication analysis](03-analysis/PUBLICATION_ANALYSIS.md). Its earlier account-management scope is superseded by [learning plan](01-product/LEARNING_PLAN.md). All feature implementation is pending. Historical Done items below mean Draft preparation only. Further requirements preparation/reviews for WI-002/003/004/005/006 are closed for current work and deferred; reopen only for a selected later part. Next: domain/concurrency review followed by Phase 4 design for Part 1.
+
 - Status: Draft coordination register, initialized 2026-10-07.
 - Owner: Project owner; contributors maintain work and evidence.
 - Source: existing [requirements next work](02-requirements/README.md#next-work) and the owner's workflow/context request on 2026-10-07.
@@ -7,6 +11,24 @@
 This register coordinates work; it does not replace the use case catalog, decide MVP priorities, or accept product policy. Item states are Planned, In progress, Blocked, or Done. A planned item order is a suggested continuation, separate from Proposed P0/P1 priorities. Blocked records the specific dependent task; unrelated authorized work can continue.
 
 ## Work items
+
+<a id="wi-007"></a>
+### WI-007 — Part 1 learner-led publication design
+
+- State: In progress — Phase 3 Draft exists; learner analysis/review pending.
+- Owner: Project owner as learner/architect; assistant as coach/reviewer.
+- Selected slice: UC-004/005/006; minimal UC-008/009 reads and scoped UC-024 audit. Full UC-001/002/003 and all purchasing/downstream features are Deferred.
+- Goal: understand and implement immutable submissions, concurrency, idempotency, publication consistency and audit through a small demonstrable slice.
+- References: [Learning Plan](01-product/LEARNING_PLAN.md), [publication analysis](03-analysis/PUBLICATION_ANALYSIS.md), [traceability](02-requirements/TRACEABILITY.md).
+- Evidence: assistant-prepared Draft domain analysis; no learner-authored design, application or executed behavioral evidence yet.
+- Completion criteria: owner can explain the model, defend alternatives/transaction boundaries, write/explain core code, execute race/replay tests and interpret results. Applicable AC/design/test evidence and scoped readiness are recorded when assessed.
+- Next action: owner draws Product/Submission states and explains approval versus withdrawal in both orders. Assistant reviews the attempt before supplying a full design.
+- Dependencies: recorded canonical policy, explicit remaining assumptions and seeded actor/Shop/category/SKU references. No full account/admin/checkout work is needed.
+- Review 2026-10-07: stale account-inclusive scheduling corrected; deferred historical work-item Next action fields below are inactive. Learning roles and checkpoints recorded. Whole-MVP gate remains unpassed.
+
+## Historical preparation items — inactive queue
+
+The results below preserve their original handoff context. Done means Draft preparation only. Their old decision-status and Next action statements are historical; canonical current policy lives in OPEN_DECISIONS.md and active scheduling lives in WI-007. Do not execute these continuation instructions automatically.
 
 <a id="wi-001"></a>
 ### WI-001 — Complete the project workflow and persistent context
@@ -40,14 +62,28 @@ This register coordinates work; it does not replace the use case catalog, decide
 <a id="wi-003"></a>
 ### WI-003 — Review the initial demo boundary and measurable goals
 
-- State: Planned — existing unresolved owner decisions.
+- State: Done (review package) — prepared 2026-10-07; owner decision on OQ-014/OQ-012 is pending.
 - Owner: Project owner; analyst/assistant prepares a concrete review package.
 - Goal: establish what the first end-to-end demo must prove and how success will be measured within the available effort.
 - References: [Product Vision](01-product/PRODUCT_VISION.md), [Functional Scope](01-product/FUNCTIONAL_SCOPE.md), [catalog priorities](02-requirements/USE_CASE_CATALOG.md#prioritization-proposal), [OQ-014](02-requirements/OPEN_DECISIONS.md#oq-014), and [OQ-012](02-requirements/OPEN_DECISIONS.md#oq-012).
-- Outputs: proposed release journey and exclusions/deferred capabilities; agreed effort constraints if supplied; metric definitions/measurement plan; recorded owner choices or explicit remaining proposals.
-- Completion check: proposed scope is reviewable against the learning goal; chosen decisions have provenance; no P1 capability is silently removed from the product baseline.
+- Outputs: [MVP release boundary and quality proposal](01-product/MVP_RELEASE_PROPOSAL.md) with five dependency-ordered slices (A–E), included simplifications, deferred P1 capabilities that stay in the baseline, decision confirmation order, per-NFR measurement plan and a demo walkthrough. No effort budget was supplied.
+- Completion check: proposed scope is reviewable against the learning goal; no P1 capability is removed from the baseline; no owner choice is recorded, so everything stays Proposed.
 - Readiness: not assessed; MVP priorities and quality targets remain Proposed.
-- Next action: prepare the release-boundary/quality proposal from canonical artifacts, then obtain or apply explicit owner decision authority where required. WI-004 Draft work can proceed alongside this review.
+- Next action: owner reviews the proposal and records accept / accept-with-changes / alternative for OQ-014 and OQ-012, which then lets slice readiness be assessed.
+
+<a id="wi-006"></a>
+### WI-006 — Specify foundation: accounts, Shops, categories, and audit
+
+- State: Done — Draft specification and decision-review preparation only, completed 2026-10-07; policy acceptance and implementation are pending.
+- Owner: Project owner for product choices; analyst/assistant for Draft specifications.
+- Goal: close the P0 gaps that every other journey depends on — who a User is, who may act for a Shop, which categories/attributes exist, and what is audited.
+- Boundary: UC-001/002/003/024 and their rules/states; P1 UC-018 through UC-023 are excluded.
+- References: [catalog](02-requirements/USE_CASE_CATALOG.md), [BR-ACCESS-001](02-requirements/BUSINESS_RULES.md#br-access-001), [BR-SHOP-001](02-requirements/BUSINESS_RULES.md#br-shop-001), [BR-CATEGORY-001](02-requirements/BUSINESS_RULES.md#br-category-001), [BR-AUDIT-001](02-requirements/BUSINESS_RULES.md#br-audit-001), [SM-ACCOUNT-001](02-requirements/STATE_MACHINES.md#sm-account-001), [SM-SHOP-001](02-requirements/STATE_MACHINES.md#sm-shop-001), [traceability](02-requirements/TRACEABILITY.md).
+- Results: [UC-001](02-requirements/USE_CASES/UC-001-manage-account-addresses.md) (14 criteria), [UC-002](02-requirements/USE_CASES/UC-002-register-manage-shop.md) (16), [UC-003](02-requirements/USE_CASES/UC-003-maintain-categories.md) (13) and [UC-024](02-requirements/USE_CASES/UC-024-record-audit.md) (12): 55 new criteria, 284 across 18 Draft use cases. Added Proposed rules/models above, new [OQ-020](02-requirements/OPEN_DECISIONS.md#oq-020)/[OQ-021](02-requirements/OPEN_DECISIONS.md#oq-021), and concrete Proposed content for OQ-002 (limits), OQ-004 (Shop/account state boundary), OQ-005 (Shop/internal permission matrix) and OQ-006 (SKU identity).
+- Checks: local Markdown file/anchor validation over 40 documentation/guidance files (1,071 links) found three broken anchors during the session (two in the new use cases, one older WI-004 link); all were fixed and the final run reported 0 broken. Criterion sequences for UC-001/002/003/024 are unique and continuous (14/16/13/12). No independent read-only review was run for this item; no application code or executable acceptance tests exist.
+- Unresolved: every new rule is Proposed. Credential/reset/session policy, ownership transfer, staff customization, Shop sanctions/recovery, hiding of Products under a deactivated category and audit retention remain open.
+- Readiness: **Not passed** for commitment; not formally assessed per slice. Draft preparation is complete.
+- Next action: owner reviews OQ-020/OQ-021 and the OQ-002/004/005/006 proposals together with the purchase decisions; an independent consistency review of UC-001/002/003/024 against UC-004 through UC-017 is recommended before gate assessment.
 
 <a id="wi-004"></a>
 ### WI-004 — Specify paid-order confirmation, fulfillment, and tracking
@@ -56,7 +92,7 @@ This register coordinates work; it does not replace the use case catalog, decide
 - Owner: Project owner for policy; analyst/assistant for Draft specifications.
 - Goal: connect paid reservations to Seller confirmation/packing/handover, simulated delivery, Buyer tracking/cancellation, and their stock/payment consequences.
 - Boundary: detailed UC-013/014/015 with necessary UC-007/011/012 updates; minimal after-sales consequences linked to UC-016/017 without silently defining refunds.
-- References: [purchase specifications](02-requirements/README.md), [rules](02-requirements/BUSINESS_RULES.md#br-inv-001), [state models](02-requirements/STATE_MACHINES.md#sm-order-001) and [traceability](02-requirements/TRACEABILITY.md#purchase-decision-impact-and-missing-downstream-work).
+- References: [purchase specifications](02-requirements/README.md), [rules](02-requirements/BUSINESS_RULES.md#br-inv-001), [state models](02-requirements/STATE_MACHINES.md#sm-order-001) and [traceability](02-requirements/TRACEABILITY.md#purchase-and-fulfillment-decision-impact).
 - Dependencies: review Proposed OQ-007/008/015 and resolve dependent OQ-009/010; authorization/SKU/validation remain OQ-002/005/006, shipping quote policy OQ-007 and logistics events OQ-015. Material choices require owner confirmation or applicable explicit delegation. Drafting alternatives may proceed while decisions remain open.
 - Minimum outputs: Seller/Buyer/partner main and failure flows; per-Shop confirmation and paid-hold timeout options; cancellation/rejection/sibling-payment consequences; separate shipment/order updates and late/duplicate tracking cases; stable criteria and linked rule/state/decision impacts.
 - Completion check: the paid-to-fulfillment path and failure/timeout/cancellation consequences are coherent and reviewable; unanswered after-sales and permission rules remain explicit. Draft completion is distinct from acceptance or a passed gate.
@@ -80,7 +116,9 @@ This register coordinates work; it does not replace the use case catalog, decide
 - Readiness: **Not passed** for commitment to this downstream slice; assessed 2026-10-07 against activity 3 of the handbook. Reviewable flows and criteria are drafted, but underlying policy choices remain Proposed/Open. Draft preparation is complete.
 - Next action: review open decisions with project owner (OQ-007, OQ-008, OQ-009, OQ-010, OQ-014, OQ-015) to achieve policy confirmation for the core MVP journey. Proceed with [WI-003](WORK_ITEMS.md#wi-003) release-boundary and quality targets review. Phase 2 exit gate remains open.
 
-## Current delivery risks
+## Historical delivery risks
+
+These risk assessments retain the original preparation context; current scope/decision status is governed by WI-007 and OPEN_DECISIONS.md.
 
 Risks identify consequences and mitigation, while normative unanswered policy stays in the OQ register. Qualitative severity is an initial planning assessment, not a measured score.
 
@@ -106,14 +144,26 @@ Risks identify consequences and mitigation, while normative unanswered policy st
 ### RISK-003 — Cross-shop/internal permission gaps can undermine the demo's isolation
 
 - State: Open; impact: High for correctness/security.
-- Evidence: [OQ-005](02-requirements/OPEN_DECISIONS.md#oq-005) remains Open; [NFR-001](02-requirements/NON_FUNCTIONAL_REQUIREMENTS.md#nfr-001) is Draft/Proposed.
+- Evidence: [OQ-005](02-requirements/OPEN_DECISIONS.md#oq-005) remains Open; [NFR-001](02-requirements/NON_FUNCTIONAL_REQUIREMENTS.md#nfr-001) is Draft/Proposed. WI-006 added a Proposed Shop/internal permission matrix in [BR-ACCESS-001](02-requirements/BUSINESS_RULES.md#br-access-001) awaiting owner confirmation.
 - Mitigation: specify allowed/denied actions alongside each journey and later verify cross-shop access with negative tests.
 - Owner: analyst/assistant for requirements; implementer/reviewer for controls; review trigger: shop-owned resource or staff action design.
 - Closure evidence: recorded permission matrix and corresponding acceptance/verification evidence for the selected slice.
 
 ## Readiness evidence
 
-- Current overall conclusion: Phase 2 is in progress; the full-MVP requirements gate in [TRACEABILITY.md](02-requirements/TRACEABILITY.md#phase-2-exit-gate-checklist) has not passed.
+### Current Part 1 review — 2026-10-07
+
+- Scope: publication/moderation analysis and learner handoff, UC-004/005/006 with minimal read/audit support.
+- Assessor: assistant; accountable learner/owner: project owner.
+- Result: **Not passed for committed implementation**. A provisional Phase 3 Draft is available, but learner review, state-code/design choices and executable evidence remain pending. Whole-MVP readiness is not assessed by this review.
+- Findings corrected: conflicting Phase 2/3 summaries, old account-inclusive active slice, stale queue instructions, missing learner responsibilities and missing phase exercise/evidence definitions.
+- Policy status: canonical OQ register contains Accepted provenance; older Draft summaries do not reopen those choices. Remaining detail coverage requires scoped review, not blanket promotion to Accepted.
+- Deferred findings: after-sales Drafts have inconsistent withdrawal Order outcomes, return-type timeout routing and damaged-return escalation across SM-ORDER/SM-DISPUTE and UC-016/017. Refund pending/unknown dispatch cap handling also needs a deeper review before Part 5 is selected. These are recorded, not fixed by expanding current work.
+- Next: owner attempts model/race exercises; assistant reviews. Relevant readiness is reassessed before committing Phase 4 contracts/implementation.
+
+### Historical slice assessments
+
+- Historical overall conclusion: whole-MVP Phase 2 gate not passed. Current Part 1 Phase 3 work is provisional, as assessed above; the wider checklist in [TRACEABILITY.md](02-requirements/TRACEABILITY.md#phase-2-exit-gate-checklist) remains reference.
 - No selected slice has a recorded requirements/design/build/release gate pass. WI-002 and WI-004 commitment readiness were assessed as Not passed on 2026-10-07; see the scoped evidence below.
 - WI-001 proves documentation delivery only; a Done work item is not a product-decision approval.
 - Before recording a gate outcome, state its scope (WI/UC/release), criterion, evidence, assessor/date, unresolved dependencies, and next action. Use Passed, Not passed, or Not assessed for the assessment; documentary acceptance is tracked separately.

@@ -68,3 +68,41 @@ Append a concise entry after meaningful project changes. The current snapshot li
 - Resume at: review open decisions (OQ-007, OQ-008, OQ-009, OQ-010, OQ-014, OQ-015) with the project owner to achieve policy confirmation for the core MVP journey. Proceed with [WI-003](WORK_ITEMS.md#wi-003) release-boundary and demo quality targets review.
 - Persistence: [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md), [WORK_ITEMS.md](WORK_ITEMS.md) and requirements/documentation indexes reflect this result.
 
+<a id="handoff-2026-10-07-foundation"></a>
+## 2026-10-07 — Foundation Draft package and MVP release proposal
+
+- Request/work/scope: owner asked to check progress and "automatically complete the remaining parts of the current phase". Executed [WI-006](WORK_ITEMS.md#wi-006) (UC-001/002/003/024) and the [WI-003](WORK_ITEMS.md#wi-003) review package, Phase 2/activity 3. This authorizes Draft preparation, not product-policy acceptance; nothing below was promoted to Accepted.
+- Changes: created [UC-001](02-requirements/USE_CASES/UC-001-manage-account-addresses.md) (14), [UC-002](02-requirements/USE_CASES/UC-002-register-manage-shop.md) (16), [UC-003](02-requirements/USE_CASES/UC-003-maintain-categories.md) (13) and [UC-024](02-requirements/USE_CASES/UC-024-record-audit.md) (12) — 55 new criteria; 284 across 18 Draft use cases (all P0). Added Proposed [BR-ACCESS-001/SHOP-001/CATEGORY-001/AUDIT-001](02-requirements/BUSINESS_RULES.md#br-access-001) and [SM-ACCOUNT-001/SM-SHOP-001](02-requirements/STATE_MACHINES.md#sm-account-001). Added [OQ-020](02-requirements/OPEN_DECISIONS.md#oq-020)/[OQ-021](02-requirements/OPEN_DECISIONS.md#oq-021) and concrete Proposed content to OQ-002 (limits), OQ-004, OQ-005 (permission matrix) and OQ-006 (SKU identity). Created the [MVP release boundary and quality proposal](01-product/MVP_RELEASE_PROPOSAL.md) and linked it from OQ-014/OQ-012. Updated catalog, requirements index, traceability, work items and project context.
+- Corrections: fixed a stale WI-004 traceability anchor; corrected the context snapshot's Git statement (one commit `first-commit` exists on `origin/main`).
+- Reviewable decisions: all new rules, limits, role names, durations and counts are candidates. Existing Accepted decisions (OQ-001/003/016/017/018, BR-PROD-002/003) were not edited.
+- Verification: 40 documentation/guidance files and 1,071 local Markdown links passed file/anchor checks (final run 0 broken after fixing three anchors); new use-case criterion sequences are unique and continuous; no trailing whitespace in new files. UTF-8 content of edited files was verified intact. No independent read-only review, application code or executable acceptance tests exist. Python is not installed, so checks used PowerShell.
+- Readiness: Draft preparation Done for WI-006 and WI-003; scoped commitment checks remain **Not passed**. The Phase 2 exit gate stays unpassed because owner confirmation of OQ-014 and the Proposed policies is not recorded; P1 UC-018 to UC-023 are catalog-only by priority.
+- Resume at: owner decisions per the confirmation order in [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md#next-action). Optional: independent consistency review of the new use cases; provisional Phase 3 exploration.
+<a id="handoff-2026-10-07-scope-reset"></a>
+## 2026-10-07 — Sprint 01 scope reset
+
+- Request/work/scope: owner rejected the oversized all-P0 direction and asked to defer unfinished use cases to later sprints while continuing to learn system design.
+- Changes: added [Sprint 01 scope](01-product/SPRINT_01_SCOPE.md); narrowed current commitment to six journeys (UC-001/004/005/006/008/009) with UC-024 audit cross-cutting; recorded UC-002/003 and UC-007 onward as later-sprint backlog; updated the catalog, requirements index, traceability, work items, and project context.
+- Interpretation: existing detailed Draft specifications are retained as reference and do not imply implementation. Product decisions remain Proposed unless their existing confirmation provenance says Accepted.
+- Verification: checked working-tree status and current indexes; no application code, design implementation, or executable acceptance tests exist yet.
+- Resume at: WI-007 — bounded Phase 3 domain/system design for the Sprint 01 publication slice.
+
+## 2026-10-07 — Close deferred work and begin bounded Phase 3
+
+- Owner direction: focus on a few technically complex core features for learning; close unfinished use cases for current work and defer later parts. This replaces the earlier account-inclusive sprint queue.
+- Changes: [learning plan](01-product/LEARNING_PLAN.md) defines ordered parts, three active core use cases and seeded prerequisites. Added Not implemented/active-or-deferred execution status to all 18 detailed UC files; catalog explicitly marks all 24 entries Not implemented. Existing drafts, stable IDs and Accepted policy provenance retained.
+- Phase transition: Phase 3 started for Part 1 publication/moderation only. [Publication analysis](03-analysis/PUBLICATION_ANALYSIS.md) records domain ownership, invariants, command consistency boundaries, races and Phase 4 questions. No whole-MVP gate pass or implemented feature is claimed.
+- Synchronization: catalog, traceability, decisions, requirements/documentation indexes, work items, context and older scope proposals link current authority. Deferred journeys are not current blockers or automatic next work.
+- Verification: git diff --check passed; local Markdown target-file checks found no missing files; 18 detailed UCs contain explicit implementation status. Anchor validation and runtime/acceptance tests were not run.
+- Resume: bounded domain/concurrency review, then Phase 4 API/data/transaction/architecture design for Part 1; do not expand scope without an owner request.
+
+## 2026-10-07 — Documentation review and learner-led handoff
+
+- Request: review documentation, commit/push for the next session, and explain learning parts, phases and the owner's practical responsibilities in system design/solution architecture.
+- Findings corrected: contradictory current Phase 2/3 snapshots; old account-inclusive WI-007/traceability; broad release scheduling presented as active; missing learner/assistant responsibilities; inconsistent summaries of recorded Accepted OQ provenance. Current indexes/context were normalized instead of adding another overriding banner.
+- Learning approach: expanded LEARNING_PLAN with experiments per part, owner/assistant work for Phases 3–6, observable learning checkpoints, and Part 1 model/race/design/code/test exercises. Updated AGENTS.md to preserve coaching behavior and avoid unattended phase delivery.
+- Scope/status: three core UCs plus minimal reads/audit, all features Not implemented; other journeys Deferred. Assistant-written publication analysis remains Draft for learner critique. Deferred after-sales inconsistencies and financial-cap review needs are recorded in WORK_ITEMS, not expanded into current work.
+- Verification: local Markdown file/anchor validation passed after restoring two legacy anchors; reviewed 46 documentation/guidance files and 1,114 local links at the validation checkpoint. All 18 detailed UCs retain unique AC definitions (284 total). git diff --check passed. Remote fetch succeeded, with local/remote HEAD aligned before this commit. No runtime/acceptance tests were run; no application exists. Recorded policy provenance was preserved, not re-approved by this review.
+- Git handoff: owner authorizes committing the current documentation/guidance working-tree snapshot and pushing to origin/main. Actual commit/push result is verified in Git and the session response, not predicted here.
+- Resume 2026-10-08: WI-007; owner draws Product/Submission and state transitions, then traces approval/withdrawal in both orders and a repeated winning request. Assistant reviews the attempt before supplying full design. Phase 4 and technology selection follow the owner's explanation and scoped readiness.
+

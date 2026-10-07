@@ -1,5 +1,8 @@
 # UC-013 — Confirm and fulfill a Shop order
 
+- Implementation status: Not implemented — deferred; closed for current work. Resume only when the owner selects a later part.
+- Planning authority: [Learning plan](../../01-product/LEARNING_PLAN.md); document maturity below is separate from implementation status.
+
 ## Metadata
 
 - Status: Draft; Seller-response timing, paid-order closure, compensation, packing, and handover behavior are Proposed under OQ-008/OQ-009/OQ-010/OQ-015. Baseline Seller confirmation remains separate from payment success.

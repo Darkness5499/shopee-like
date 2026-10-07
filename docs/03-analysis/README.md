@@ -1,11 +1,11 @@
 # Domain and Process Analysis
 
 - Status: Draft index.
-- Phase status: Planned — Phase 3 has not started.
-- Owner: Project owner.
+- Phase status: In progress — Part 1 publication/moderation only.
+- Owner: Project owner as learner; assistant as coach/reviewer.
 
-This directory will contain the Domain Model, Business Process Diagrams, Event Catalog, and ownership/consistency analysis derived from accepted requirements. No domain boundaries have been established yet.
+[Publication analysis](PUBLICATION_ANALYSIS.md) is an assistant-prepared provisional model covering Product/Submission ownership, invariants and consistency boundaries. It is not yet a learner-reviewed or accepted domain design.
 
-Provisional domain sketches may support Draft requirements for a selected journey. Mark their assumptions and linked open decisions; committed models need scoped requirements readiness rather than completion of every unrelated MVP use case. Planned status records the current lack of artifacts, not a ban on exploration.
+Next: the owner draws a model and transition table, traces competing approve/withdraw/reject and explains retries. Review against UC-004/005/006 and BR-PROD-002/003. Amend the Draft from that discussion; keep assumptions explicit. Then move to Phase 4 when scoped prerequisites and the owner's explanation support it.
 
-See the [phase gates](../PRODUCT_DEVELOPMENT_PROCESS.md) and [requirements index](../02-requirements/README.md).
+Use the [Learning Plan](../01-product/LEARNING_PLAN.md) for exercises and [handbook](../PRODUCT_DEVELOPMENT_PROCESS.md) for readiness. Analysis of deferred purchase/payment/shipment/refund domains is closed for current work.

@@ -1,5 +1,8 @@
 # UC-006 — Review a Product Submission
 
+- Implementation status: Not implemented — active core design slice (Part 1).
+- Planning authority: [Learning plan](../../01-product/LEARNING_PLAN.md); document maturity below is separate from implementation status.
+
 ## Metadata
 
 - Status: **Draft**; not an approved Phase 2 requirement.

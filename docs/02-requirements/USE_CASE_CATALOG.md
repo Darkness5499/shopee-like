@@ -1,16 +1,26 @@
 # Use Case Catalog
 
-- Status: Draft; all priorities are Proposed.
+## Current execution authority
+
+[Ordered learning plan](../01-product/LEARNING_PLAN.md) supersedes the scheduling proposals below. **All 24 entries are Not implemented.** Only UC-004/005/006 are active core features; UC-008/009 are minimal read support and UC-024 provides scoped audit. UC-001/002/003/007/010–023 and advanced read/audit features are **Deferred — closed for current work**. Do not draft or implement them until a later part is explicitly selected.
+
+- Status: Draft catalog; implementation status and active scheduling are separate from recorded policy decisions.
 - Owner: Project owner.
 - Source: [Functional Scope](../01-product/FUNCTIONAL_SCOPE.md), [Product Vision](../01-product/PRODUCT_VISION.md), and [actors](../01-product/STAKEHOLDERS_AND_ACTORS.md).
 
 ## Prioritization proposal
 
+### Active Part 1
+
+UC-004/005/006 are the core learning features. Minimal UC-008/009 reads and scoped UC-024 audit support them. Seeded actor, Shop, category and SKU references replace full administration in this part. The owner attempts the domain/design exercises and core implementation; the assistant reviews and assists bounded work.
+
+### Historical broad release classification
+
 **P0 — Initial end-to-end demo:** authorized shop setup, category/product/SKU/stock maintenance, moderation, buyer discovery and multi-shop checkout, simulated payment, seller fulfillment, shipment tracking, and a minimal refund/dispute path. This preserves the vision's purchase-to-completion-or-dispute outcome.
 
 **P1 — Subsequent demo increments:** reviews, voucher/promotion management, violation handling, exceptional staff order interventions, and reporting. These remain in scope; P1 is not an exclusion. Voucher application in checkout is specified when the voucher rules are ready, not assumed away permanently.
 
-These priorities await owner confirmation under [OQ-014](OPEN_DECISIONS.md#oq-014). Items below are a requirements inventory, not an implementation backlog. A broad entry can be split into additional stable use case IDs during specification.
+[OQ-014](OPEN_DECISIONS.md#oq-014) records baseline/MVP confirmation. This broad classification is deferred scheduling reference; the Learning Plan controls current work. Items below are a requirements inventory, not an implementation backlog. A broad entry can be split into additional stable use case IDs during specification.
 
 ## P0 inventory
 
@@ -19,21 +29,21 @@ These priorities await owner confirmation under [OQ-014](OPEN_DECISIONS.md#oq-01
 - Primary actor: User acting as Buyer or Seller.
 - Scope: SC-001.
 - Goal: establish account access and maintain profile/address information for permitted actions.
-- Detail: Not yet specified; account verification and role boundaries depend on OQ-005.
+- Detail: [Draft specification](USE_CASES/UC-001-manage-account-addresses.md), 14 Proposed criteria for registration, simulated verification, sign-in lock, profile and addresses under OQ-020/OQ-005.
 
 ### UC-002 — Register and manage a Shop and its operators
 
 - Primary actor: Seller; supporting actors: shop staff and authorized Internal Staff.
 - Scope: SC-009, SC-016, SC-023.
 - Goal: register a Shop, assign permitted operators, and complete required Shop moderation.
-- Detail: Not yet specified; Shop lifecycle and permission matrix depend on OQ-004/OQ-005. Product moderation is UC-006, not a reused Shop state machine.
+- Detail: [Draft specification](USE_CASES/UC-002-register-manage-shop.md), 16 Proposed criteria for Shop registration/review, operator roles and cross-Shop isolation (BR-SHOP-001, BR-ACCESS-001, SM-SHOP-001). Product moderation is UC-006, not a reused Shop state machine; sanctions remain UC-021/OQ-004.
 
 ### UC-003 — Maintain categories and attribute definitions
 
 - Primary actor: Admin.
 - Scope: SC-017; supports SC-002/SC-010.
 - Goal: maintain the category hierarchy and category-specific required/optional attributes.
-- Detail: Not yet specified; validation boundaries depend on OQ-002.
+- Detail: [Draft specification](USE_CASES/UC-003-maintain-categories.md), 13 Proposed criteria for hierarchy, versioned attribute schemas, deactivation effects and Admin-only access (BR-CATEGORY-001) under OQ-002/OQ-021.
 
 ### UC-004 — Create or update a Product and its SKUs
 
@@ -193,7 +203,7 @@ These priorities await owner confirmation under [OQ-014](OPEN_DECISIONS.md#oq-01
 - Initiating actors: Buyer, Seller, and Internal Staff through their permitted use cases.
 - Scope: SC-022; supports SC-023.
 - Goal: preserve actor, action, changed data, and timestamp for auditable actions.
-- Detail: Draft quality specification [NFR-004](NON_FUNCTIONAL_REQUIREMENTS.md#nfr-004); audit coverage must be attached to each detailed use case. This catalog entry coordinates a cross-cutting capability, not a separate user-interface flow.
+- Detail: [Draft specification](USE_CASES/UC-024-record-audit.md), 12 Proposed criteria for the audit inventory, atomic records, immutability, redaction and authorized inspection (BR-AUDIT-001, [NFR-004](NON_FUNCTIONAL_REQUIREMENTS.md#nfr-004)). Audit coverage is still attached to each detailed use case; this entry coordinates a cross-cutting capability, not a separate user-interface flow.
 
 ## Specification order
 
@@ -202,7 +212,7 @@ Work by connected business journey across Seller, Buyer, Internal Staff, and par
 1. Product publication and shopping: UC-004/005/006 → UC-008/009/010 have Draft specifications. Refine UC-003 category validation, UC-002 Shop eligibility and permission dependencies alongside their affected journeys.
 2. Purchase through delivery: UC-007/011/012 now have connected Draft stock/checkout/payment specifications. UC-013/014/015 now add Draft Seller confirmation/packing, simulated delivery and Buyer tracking/cancellation. Next review Proposed OQ-007/OQ-008/OQ-009/OQ-010/OQ-015 and connect UC-016/017 completion/after-sales/financial disposition. Keep order, payment, shipment and reservation lifecycles distinct; settle paid-hold timeout/rejection consequences before committing fulfillment behavior.
 3. After-sales resolution: UC-016/017 alongside the relevant UC-015/014/012 outcomes. Specify Buyer requests, Seller evidence/returns, Support decisions, and simulated refunds together.
-4. UC-001/002/003 and UC-024 provide account/Shop/category, authorization, and audit requirements throughout the journeys; complete their own specifications before the MVP gate.
+4. UC-001/002/003 and UC-024 now have Draft account/Shop/category, authorization and audit specifications (55 criteria). Owner review of OQ-020/OQ-021/OQ-005/OQ-004 is needed before the MVP gate.
 5. P1 capabilities extend the relevant journeys. Reviews affect discovery/detail; vouchers affect checkout; reporting uses settled order/refund rules. They remain in scope without requiring completion of every Seller feature before Buyer specifications begin.
 
 No P0 use case is accepted yet. Draft coverage and the Phase 2 exit-gate checklist are in [TRACEABILITY.md](TRACEABILITY.md).

@@ -1,5 +1,8 @@
 # UC-017 — Resolve a refund/dispute and simulate refund execution
 
+- Implementation status: Not implemented — deferred; closed for current work. Resume only when the owner selects a later part.
+- Planning authority: [Learning plan](../../01-product/LEARNING_PLAN.md); document maturity below is separate from implementation status.
+
 ## Metadata
 
 - Status: Draft specification; dispute adjudication, return receipt inspection/restock, simulated refund execution, and reconciliation closure are **Proposed** under OQ-009/OQ-010/OQ-015.

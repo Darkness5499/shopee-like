@@ -1,5 +1,8 @@
 # UC-016 — Request a return, refund, or dispute
 
+- Implementation status: Not implemented — deferred; closed for current work. Resume only when the owner selects a later part.
+- Planning authority: [Learning plan](../../01-product/LEARNING_PLAN.md); document maturity below is separate from implementation status.
+
 ## Metadata
 
 - Status: Draft specification; dispute intake windows, grounds, requested amount caps, and Seller response deadlines are **Proposed** under OQ-010.

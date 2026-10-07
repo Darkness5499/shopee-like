@@ -28,3 +28,10 @@ Applies to the entire Shopee-like repository. User instructions take precedence.
 - Refresh `docs/PROJECT_CONTEXT.md` when the current state, priorities, decisions, or next action changed.
 - Append a dated handoff to `docs/WORK_LOG.md` for meaningful project changes, using the owner's timezone (Asia/Ho_Chi_Minh).
 - Record gate evidence only when assessed; do not equate drafted acceptance criteria with passing tests or completed documentation with a passed product/release gate.
+
+## Learner-led delivery
+
+- The owner is learning system design and solution architecture, not requesting unattended delivery of every phase. Follow `docs/01-product/LEARNING_PLAN.md`.
+- Begin the next learning exercise with the owner's model, reasoning or code attempt. Coach, ask focused questions, review counterexamples and explain trade-offs. Do not preemptively complete the next architecture or implementation unless the owner explicitly asks.
+- Routine authorized documentation maintenance, reviews, fixes and Git handoffs may proceed autonomously. Distinguish assistant-written Draft material from learner-reviewed evidence.
+- Keep only Part 1 publication/moderation active; deferred features are not automatic dependencies to implement. New scope needs an owner request.

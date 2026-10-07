@@ -1,5 +1,8 @@
 # UC-014 — Create and track a simulated shipment
 
+- Implementation status: Not implemented — deferred; closed for current work. Resume only when the owner selects a later part.
+- Planning authority: [Learning plan](../../01-product/LEARNING_PLAN.md); document maturity below is separate from implementation status.
+
 ## Metadata
 
 - Status: Draft specification; shipment identity, creation, tracking order, failure/return handling, and reconciliation policies are **Proposed**, pending OQ-009/OQ-010/OQ-015. This document records no new Accepted policy.

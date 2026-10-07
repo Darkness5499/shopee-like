@@ -1,7 +1,8 @@
 # Business Rules
 
-- Status: Draft register — BR-PROD-001 Baseline; BR-PROD-002/003 contain Accepted policy; BR-PROD-004 and inventory/purchase/fulfillment/cancellation/shipment rules are Proposed; staff intervention and after-sales details remain open.
+- Status: Accepted register for MVP Release 1 baseline — BR-PROD-001 is Baseline; BR-PROD-002 through BR-PROD-004, BR-INV-001, BR-ORDER-001, BR-PAY-001, BR-ORDER-002, BR-CANCEL-001, BR-SHIP-001, BR-AFTERSALES-001, BR-REFUND-001, BR-STOCK-RECEIPT-001, BR-ACCESS-001, BR-SHOP-001, BR-CATEGORY-001, and BR-AUDIT-001 are Accepted with recorded owner confirmation provenance.
 - Owner: Project owner.
+- Updated: 2026-10-07.
 - Source: existing moderation decision and [Functional Scope](../01-product/FUNCTIONAL_SCOPE.md), SC-010/SC-011/SC-016/SC-017/SC-023.
 - Identifier convention: `BR-{DOMAIN}-###`; the existing `BR-PROD-001` is retained.
 
@@ -152,12 +153,12 @@ This rule requires stable submission identity and indivisible acceptance of a wi
 <a id="br-prod-004"></a>
 ## BR-PROD-004 — Public visibility and SKU purchase eligibility
 
-- Status: Proposed; Accepted BR-PROD-002 takes precedence for review-related hiding and blocked new purchases.
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-019. Accepted BR-PROD-002 takes precedence for review-related hiding and blocked new purchases.
 - Owner: Project owner.
 - Source: SC-002/SC-003/SC-004/SC-005/SC-010/SC-011/SC-012, BR-PROD-001/002, and [OQ-019](OPEN_DECISIONS.md#oq-019).
 - Applies to: public discovery/detail, cart evaluation, and new-purchase eligibility in UC-008/009/010/011.
 
-### Proposed rule
+### Rule
 
 A Product is eligible for a public sale listing when its current high-risk content has been approved, its Shop is permitted to sell, no applicable hiding/restriction blocks sale, and it has at least one enabled SKU with valid operational data. Shop restrictions and exact SKU validity remain under OQ-004/OQ-005 and OQ-002/OQ-006; this rule does not define new account/Shop state codes.
 
@@ -167,11 +168,11 @@ Visibility and purchase eligibility are separate. An enabled valid SKU at zero a
 
 A new purchase requires the Product to satisfy the listing guards and the selected SKU to remain enabled and valid with enough quantity available for the requested purchase. Search/detail/cart availability is information at the time evaluated, not a stock hold or a price guarantee. Checkout must evaluate the applicable guards again before accepting a purchase/reservation; exact stock timing and checkout consistency remain OQ-007/OQ-008.
 
-### Accepted hiding boundary and proposed presentation
+### Accepted hiding boundary and presentation
 
 Accepted BR-PROD-002 hides the entire Product from sale and blocks new purchases from successful actual risky saving until revised content receives manual approval. It applies before submission and through failed validation, review, withdrawal/editing, and rejection. No public-sale evaluation may use the old approval to bypass this restriction.
 
-Proposed presentation under OQ-019: public discovery excludes such Products; direct Product lookup reports unavailable without displaying unapproved high-risk content or enabling a new purchase. An existing cart item may remain identifiable and removable as unavailable. It must not expose unapproved content, contribute as an eligible checkout item, or silently change to another SKU. Previously presented safe identification, if retained, must not imply an active sale listing.
+Presentation under Accepted OQ-019: public discovery excludes such Products; direct Product lookup reports unavailable without displaying unapproved high-risk content or enabling a new purchase. An existing cart item may remain identifiable and removable as unavailable. It must not expose unapproved content, contribute as an eligible checkout item, or silently change to another SKU. Previously presented safe identification, if retained, must not imply an active sale listing.
 
 Cart membership and edits create no stock reservation, Order, payment, or fixed-price entitlement. A new addition/increase must pass current Product/SKU eligibility and positive-quantity checks; evaluate sufficient available stock against the resulting total intended quantity for the exact Shop/SKU across the cart, not merely the added increment. An invalid attempt applies no cart change. Re-evaluate current permitted prices and eligibility when the Buyer reads/changes the cart; disclose price changes from the previously presented amount. Existing unavailable entries may be reduced/removed without becoming eligible by that action alone. Checkout rechecks rather than relying on a prior cart result. Final price acceptance, snapshots, sibling-item failure, and checkout-versus-edit ordering remain OQ-007/OQ-008.
 
@@ -182,18 +183,18 @@ Product hiding or operational changes alone do not cancel, refund, or rewrite an
 - [UC-008](USE_CASES/UC-008-discover-products.md): discovery eligibility, out-of-stock presentation, current SKU prices, and Accepted review hiding.
 - [UC-009](USE_CASES/UC-009-view-product.md): detail eligibility, SKU selection, direct lookup, and current operational values.
 - [UC-010](USE_CASES/UC-010-manage-cart.md): cart eligibility, unavailable retained items, current prices, and no reservation from cart membership.
-- [UC-011](USE_CASES/UC-011-checkout.md): final purchasing guards, aggregate quantities, and quote revalidation are Draft; grouping/ordering/snapshots remain Proposed under OQ-007/OQ-008.
+- [UC-011](USE_CASES/UC-011-checkout.md): final purchasing guards, aggregate quantities, and quote revalidation are Draft; grouping/ordering/snapshots are Accepted under OQ-007/OQ-008.
 - [SM-PRODUCT-001](STATE_MACHINES.md#sm-product-001): public visibility and purchasability are guards, not new accepted Product state codes.
 - Open decisions: [OQ-019](OPEN_DECISIONS.md#oq-019), OQ-002/004/005/006/007/008.
 
 <a id="br-inv-001"></a>
 ## BR-INV-001 — Protected SKU inventory and reservations
 
-- Status: Proposed; Baseline SC-012 reserve/release/deduct timing is preserved. Confirmation remains Seller acceptance, with its payment prerequisite Proposed.
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-008. Baseline SC-012 reserve/release/deduct timing is preserved; confirmation remains Seller acceptance following timely payment.
 - Owner: Project owner.
 - Scope/source: SC-012/SC-005/SC-013; [OQ-008](OPEN_DECISIONS.md#oq-008), dependent OQ-002/005/006/007/009/010/015.
 
-### Proposed rule
+### Rule
 
 For each exact Shop/SKU, `reserved` equals the sum of its effective `ACTIVE_PAYMENT` and `ACTIVE_PAID` holds; `available = on_hand - reserved`, with `on_hand >= reserved >= 0`. All quantities use the agreed unit/precision. `on_hand` denotes recorded physical stock, not a real warehouse integration.
 
@@ -217,11 +218,11 @@ This protects sold intentions while keeping payment and Seller confirmation dist
 <a id="br-order-001"></a>
 ## BR-ORDER-001 — Checkout acceptance, totals, and purchase facts
 
-- Status: Proposed; the Baseline split into separate Orders per Shop is retained.
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-007. The Baseline split into separate Orders per Shop is retained.
 - Owner: Project owner.
 - Scope/source: SC-004/005/006/012/013; [OQ-007](OPEN_DECISIONS.md#oq-007), dependent OQ-002/004/005/006/008/009/011/019.
 
-### Proposed rule
+### Rule
 
 Buyer explicitly selects the intended checkout set. Accept all of that set together or none; an unselected cart entry is outside the attempt. Resolve exact Shop/Product/SKU identity and aggregate quantities for the same Shop/SKU. No silent substitution, dropped failed Shop, partial order, or unaccepted changed price is permitted.
 
@@ -231,7 +232,7 @@ Successful acceptance creates one purchase group owned by Buyer and one Shop ord
 
 The accepted immutable purchase snapshot contains exact identities, approved product/variant descriptions, quantities/unit prices, item subtotals, shipping/discount amounts and sources, per-Shop/group amounts, currency, address, shipping choice and payment deadline. Later catalog/cart/address edits do not silently rewrite it. Source cart intentions remain until Buyer changes/removes them; new checkout requires a new deliberate identity and fresh guards.
 
-Checkout acceptance must be ordered with relevant successful Product/offer changes. If review-related hiding is accepted first, Accepted BR-PROD-002 blocks new checkout. If checkout is accepted first, its approved snapshot and existing holds remain; later risky saving blocks further purchases without automatically cancelling/refunding that purchase. This purchase ordering is Proposed OQ-007; Accepted moderation concurrency OQ-003 does not decide it. Existing-order consequences of Shop/staff restriction or SKU reidentification remain open.
+Checkout acceptance must be ordered with relevant successful Product/offer changes. If review-related hiding is accepted first, Accepted BR-PROD-002 blocks new checkout. If checkout is accepted first, its approved snapshot and existing holds remain; later risky saving blocks further purchases without automatically cancelling/refunding that purchase. This purchase ordering is Accepted OQ-007; Accepted moderation concurrency OQ-003 does not decide it. Existing-order consequences of Shop/staff restriction or SKU reidentification remain open.
 
 After ownership checks, resolve the stable Buyer operation identity and immutable instructions before new-action eligibility checks. An accepted repeat returns its original facts and current lifecycle status, even if the cart/catalog later changed, without another group, hold, payment, deadline extension or effective audit change. Reuse with different instructions is refused. New/uncommitted acceptance still checks all current guards. An interrupted/unknown acceptance must be recovered to all accepted facts or none before claiming success or creating another purchase.
 
@@ -240,16 +241,16 @@ After ownership checks, resolve the stable Buyer operation identity and immutabl
 One group gives Buyer a clear initial checkout/payment outcome while preserving per-Shop fulfillment. Payment grouping does not give a Shop access to sibling-Shop private records or the entire Buyer's purchase.
 
 - [UC-011](USE_CASES/UC-011-checkout.md): AC-UC-011-01 through 16; [UC-012](USE_CASES/UC-012-process-payment.md): AC-UC-012-01/13/19/24.
-- [SM-ORDER-001](STATE_MACHINES.md#sm-order-001); BR-INV-001/PAY-001; NFR-001/003/004. [BR-ORDER-002](#br-order-002) and [BR-CANCEL-001](#br-cancel-001) extend this proposal to Seller fulfillment and cancellation without recalculating the group amount. Concrete shipping/voucher rules, restriction consequences, completion and refund execution remain pending.
+- [SM-ORDER-001](STATE_MACHINES.md#sm-order-001); BR-INV-001/PAY-001; NFR-001/003/004. [BR-ORDER-002](#br-order-002) and [BR-CANCEL-001](#br-cancel-001) extend this rule to Seller fulfillment and cancellation without recalculating the group amount. Concrete shipping/voucher rules, restriction consequences, completion and refund execution remain pending.
 
 <a id="br-pay-001"></a>
 ## BR-PAY-001 — Verified simulated payment and exception recovery
 
-- Status: Proposed; Baseline simulated signature verification, idempotency, retry/reconciliation and success/failure/expiry capability is retained.
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-015. Baseline simulated signature verification, idempotency, retry/reconciliation and success/failure/expiry capability is retained.
 - Owner: Project owner.
 - Scope/source: SC-006/026, related SC-005/012/022; [OQ-015](OPEN_DECISIONS.md#oq-015), OQ-007/OQ-008 and dependent OQ-002/005/009/010/012.
 
-### Proposed rule
+### Rule
 
 One accepted purchase group has one stable logical Payment Request identity for its snapshotted group amount/currency. Identity is available for recovery even before simulated provider creation succeeds. Unknown creation/transport outcome is not verified failure; recover/query/retry that same logical request without creating another payable request or extending holds.
 
@@ -272,18 +273,18 @@ Reconciliation correlates provider facts, request application, Orders/holds and 
 These business outcomes make asynchronous uncertainty visible without selecting callback fields, signature algorithms, storage or transport. All financial behavior uses the simulated provider.
 
 - [UC-012](USE_CASES/UC-012-process-payment.md): AC-UC-012-01 through 24; [UC-007](USE_CASES/UC-007-manage-inventory.md): AC-UC-007-09 through 16; [UC-011](USE_CASES/UC-011-checkout.md): AC-UC-011-13.
-- [SM-PAYMENT-001](STATE_MACHINES.md#sm-payment-001), [SM-ORDER-001](STATE_MACHINES.md#sm-order-001), [SM-RESERVATION-001](STATE_MACHINES.md#sm-reservation-001); NFR-001/002/003/004/006. Logistics event ordering is Proposed in [BR-SHIP-001](#br-ship-001); refund execution remains pending UC-017/OQ-010.
+- [SM-PAYMENT-001](STATE_MACHINES.md#sm-payment-001), [SM-ORDER-001](STATE_MACHINES.md#sm-order-001), [SM-RESERVATION-001](STATE_MACHINES.md#sm-reservation-001); NFR-001/002/003/004/006. Logistics event ordering is Accepted in [BR-SHIP-001](#br-ship-001); refund execution is Accepted in [BR-REFUND-001](#br-refund-001).
 
 <a id="br-order-002"></a>
 ## BR-ORDER-002 — Seller confirmation, packing, and handover
 
-- Status: Proposed; Baseline Seller confirmation/deduction and packing/handover capabilities are retained.
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-008 and OQ-009. Baseline Seller confirmation/deduction and packing/handover capabilities are retained.
 - Owner: Project owner.
 - Scope/source: SC-013/012/007/022; [OQ-008](OPEN_DECISIONS.md#oq-008), [OQ-009](OPEN_DECISIONS.md#oq-009), OQ-004/005/006/010/015.
 
-### Proposed rule
+### Rule
 
-Only an authorized Shop Operator may confirm a `PAID_AWAITING_CONFIRMATION` Shop order with applied group payment `SUCCEEDED`, no blocking payment reconciliation, and all its exact matching `ACTIVE_PAID` holds. New confirmation must be accepted strictly before its recorded Seller-response deadline. The working candidate is **24 hours from the authoritative time group payment success was applied**, recorded per Shop order with its policy version; callback receipt, provider occurrence time, retry and later reads cannot start or extend it. The duration is unconfirmed under OQ-009.
+Only an authorized Shop Operator may confirm a `PAID_AWAITING_CONFIRMATION` Shop order with applied group payment `SUCCEEDED`, no blocking payment reconciliation, and all its exact matching `ACTIVE_PAID` holds. New confirmation must be accepted strictly before its recorded Seller-response deadline: **24 hours from the authoritative time group payment success was applied**, recorded per Shop order with its policy version; callback receipt, provider occurrence time, retry and later reads cannot start or extend it.
 
 Confirmation accepts the whole Shop order together: set `CONFIRMED`, consume all its paid holds, and decrease on_hand and reserved by the same quantities once. Available stock is unchanged; sibling Orders, holds, payment amount and fulfillment are unchanged. Missing/conflicting identities, quantities or holds require an observable consistency issue, without partial confirmation, speculative stock correction or SKU substitution. Payment success remains distinct from Seller confirmation.
 
@@ -295,16 +296,16 @@ After authorization, resolve a known operation's original instructions/outcome b
 
 ### Coverage and limits
 
-[UC-013](USE_CASES/UC-013-fulfill-shop-order.md), [UC-014](USE_CASES/UC-014-simulate-shipment.md), [UC-015](USE_CASES/UC-015-track-cancel-orders.md); SM-ORDER-001/RESERVATION-001/SHIPMENT-001; NFR-001/003/004/006. New fulfillment and closure criteria are Proposed; executable evidence, packing/handover service deadlines, detailed permissions and after-sales completion remain pending.
+[UC-013](USE_CASES/UC-013-fulfill-shop-order.md), [UC-014](USE_CASES/UC-014-simulate-shipment.md), [UC-015](USE_CASES/UC-015-track-cancel-orders.md); SM-ORDER-001/RESERVATION-001/SHIPMENT-001; NFR-001/003/004/006.
 
 <a id="br-cancel-001"></a>
 ## BR-CANCEL-001 — Unpaid group cancellation and paid Shop closure
 
-- Status: Proposed; no cancellation/refund acceptance is inferred from the scope or drafting request.
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-009.
 - Owner: Project owner.
 - Scope/source: SC-007/012/013/020/026; [OQ-009](OPEN_DECISIONS.md#oq-009), OQ-007/008/010/011/015.
 
-### Proposed eligibility and effects
+### Eligibility and effects
 
 1. **Unpaid Buyer cancellation:** the owning Buyer explicitly cancels the entire group while payment is `PENDING`, every Shop order is `PAYMENT_PENDING`, and all exact unpaid holds are active strictly before the unpaid deadline. Together mark payment application `CANCELLED`, all group Shop orders `CANCELLED` with unpaid-Buyer cause, and release every unpaid hold once (reserved decreases, available increases, on_hand unchanged). No refund obligation is inferred from unapplied/unknown payment; later verified financial success is retained for reconciliation, without restoring the purchase. Do not cancel one unpaid sibling independently. At/after unpaid deadline use UC-012 expiry rather than relabelling expiry as cancellation.
 2. **Paid Buyer cancellation / Seller rejection:** while one Shop order is `PAID_AWAITING_CONFIRMATION`, applied group payment is `SUCCEEDED`, all its exact paid holds match, and authoritative acceptance is strictly before the Seller deadline, the owning Buyer may cancel that named Shop order or its authorized Seller may reject it with a reason. An optional Buyer reason is recorded if supplied; rejection requires a reason. One indivisible outcome records `CANCELLED` or `SELLER_REJECTED` with cause, releases all that Shop order's paid holds once, and establishes its complete compensation obligation below. No physical stock was deducted, so release does not increase on_hand. Siblings continue independently.
@@ -328,11 +329,11 @@ Obligations for distinct cancelled Shop orders remain separate and cannot exceed
 <a id="br-ship-001"></a>
 ## BR-SHIP-001 — Simulated Shipment identity and ordered progress
 
-- Status: Proposed; Baseline simulated Shipment creation and duplicate/late/out-of-order tracking are retained.
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-010 and OQ-015. Baseline simulated Shipment creation and duplicate/late/out-of-order tracking are retained.
 - Owner: Project owner.
 - Scope/source: SC-024/025/007/013/022; [OQ-015](OPEN_DECISIONS.md#oq-015), [OQ-010](OPEN_DECISIONS.md#oq-010), OQ-005/007/009/012.
 
-### Proposed rule
+### Rule
 
 An authorized Shop Operator creates one logical Shipment for one whole paid, confirmed and packed Shop order, using its accepted item/address/shipping facts. Resolve stable creation identity before contacting the simulated Partner. Unknown creation or a lost acknowledgement is recoverable under the same identity; it is not rejection, pickup or permission to create another Shipment. Authenticated correlated acknowledgement establishes `AWAITING_PICKUP` and the authoritative tracking-sequence baseline. The exact sequence representation/starting number, authentication scheme and partner fields remain later design/OQ-015. No inbound event can invent a local Shipment/Order or silently substitute its association.
 
@@ -346,22 +347,22 @@ Shipment, Order synchronization and effective audit/notification intent are one 
 
 ### Coverage and limits
 
-[UC-014](USE_CASES/UC-014-simulate-shipment.md), [UC-013](USE_CASES/UC-013-fulfill-shop-order.md), [UC-015](USE_CASES/UC-015-track-cancel-orders.md); SM-SHIPMENT-001/ORDER-001; NFR-001/002/004/006. Retry/query authority, gap-recovery stopping, retention, numeric recovery targets, cancellation before pickup after confirmation, replacement/multiple parcels and terminal corrections remain unconfirmed. This proposal excludes unsafe automatic shortcuts rather than deciding those future capabilities.
+[UC-014](USE_CASES/UC-014-simulate-shipment.md), [UC-013](USE_CASES/UC-013-fulfill-shop-order.md), [UC-015](USE_CASES/UC-015-track-cancel-orders.md); SM-SHIPMENT-001/ORDER-001; NFR-001/002/004/006.
 
 <a id="br-aftersales-001"></a>
 ## BR-AFTERSALES-001 — Delivery completion, dispute intake, and Seller response
 
-- Status: Proposed; after-sales windows, grounds, and auto-completion timing are reviewable proposals under OQ-010.
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-010.
 - Owner: Project owner.
 - Scope/source: SC-007/008/020; [OQ-010](OPEN_DECISIONS.md#oq-010), OQ-005/007/009/015.
 
-### Proposed rules
+### Rules
 
 1. **Delivery vs. Completion:**
    - Physical arrival of goods establishes `DELIVERED` status via authenticated Logistics Partner evidence ([BR-SHIP-001](#br-ship-001)).
    - An Order transitions from `DELIVERED` to `COMPLETED` either by:
      a) **Explicit Buyer confirmation:** Buyer acknowledges receipt while in `DELIVERED` state with no active dispute.
-     b) **System auto-completion timeout:** If Buyer takes no action for **7 days** (candidate auto-completion window under OQ-010) following recorded `DELIVERED` timestamp, and no active dispute exists, system automatically marks the Order `COMPLETED`.
+     b) **System auto-completion timeout:** If Buyer takes no action for **7 days** (auto-completion window under OQ-010) following recorded `DELIVERED` timestamp, and no active dispute exists, system automatically marks the Order `COMPLETED`.
    - Once an Order reaches `COMPLETED`, the regular after-sales return window closes; post-completion recourse requires exceptional Internal Staff intervention under SC-020/OQ-004.
 
 2. **Dispute intake eligibility and windows:**
@@ -374,10 +375,10 @@ Shipment, Order synchronization and effective audit/notification intent are one 
 
 3. **Dispute freeze on order completion:**
    - Filing an eligible dispute immediately **suspends the auto-completion timer** on that Shop order. The Order cannot transition to `COMPLETED` while a dispute is open.
-   - If Buyer withdraws the dispute, the remaining auto-completion window resumes or a minimum grace period (candidate 24 hours) applies.
+   - If Buyer withdraws the dispute, the remaining auto-completion window resumes or a minimum grace period (24 hours) applies.
 
 4. **Seller response deadline:**
-   - Once a dispute is submitted, Seller is given **48 hours** (candidate response window under OQ-010) to respond:
+   - Once a dispute is submitted, Seller is given **48 hours** (response window under OQ-010) to respond:
      a) **Accept:** Seller agrees to Buyer's request (`REFUND_ONLY` or accepts item return).
      b) **Reject / Dispute:** Seller disagrees (e.g. asserts item sent was intact, evidence inadequate). The case is escalated to Internal Staff (`Support`) for binding adjudication.
      c) **Timeout:** If Seller does not respond within 48 hours, system auto-accepts Buyer's request on Seller's behalf.
@@ -389,11 +390,11 @@ Shipment, Order synchronization and effective audit/notification intent are one 
 <a id="br-refund-001"></a>
 ## BR-REFUND-001 — Financial refund caps, allocation, and simulated execution
 
-- Status: Proposed; financial caps, compensation execution, and exception reconciliation are reviewable proposals under OQ-009/010/015.
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-009, OQ-010, and OQ-015.
 - Owner: Project owner.
 - Scope/source: SC-006/007/020/026; [OQ-009](OPEN_DECISIONS.md#oq-009), [OQ-010](OPEN_DECISIONS.md#oq-010), [OQ-015](OPEN_DECISIONS.md#oq-015).
 
-### Proposed rules
+### Rules
 
 1. **Cumulative refund cap by verified paid funds:**
    - The total sum of all executed refunds (pre-confirmation cancellation compensation, after-sales dispute refunds, and payment exception resolutions) across all Shop orders for a purchase group **can never exceed the verified successful paid amount received from the Payment Provider** for that group.
@@ -421,11 +422,11 @@ Shipment, Order synchronization and effective audit/notification intent are one 
 <a id="br-stock-receipt-001"></a>
 ## BR-STOCK-RECEIPT-001 — Physical return inspection and inventory restock
 
-- Status: Proposed; restock condition and physical receipt evidence are reviewable proposals under OQ-010.
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-010.
 - Owner: Project owner.
 - Scope/source: SC-012/020; [OQ-010](OPEN_DECISIONS.md#oq-010), [BR-INV-001](#br-inv-001).
 
-### Proposed rules
+### Rules
 
 1. **No automatic restock upon refund approval or delivery return:**
    - Consumed physical inventory is **never restocked automatically** upon dispute submission, refund approval, or carrier return event (`RETURNED` in BR-SHIP-001).
@@ -443,6 +444,98 @@ Shipment, Order synchronization and effective audit/notification intent are one 
 ### Coverage
 
 [UC-007](USE_CASES/UC-007-manage-inventory.md), [UC-014](USE_CASES/UC-014-simulate-shipment.md), [UC-017](USE_CASES/UC-017-resolve-refund-dispute.md); SM-INVENTORY-001; NFR-003/004.
+
+<a id="br-access-001"></a>
+## BR-ACCESS-001 — Accounts, addresses, and permission model
+
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-005 and OQ-020.
+- Owner: Project owner.
+- Scope/source: SC-001/009/023; [OQ-005](OPEN_DECISIONS.md#oq-005), [OQ-020](OPEN_DECISIONS.md#oq-020).
+
+### Rules
+
+1. **Account:** one User per unique login identifier (email). Credentials are stored and logged only in non-reversible form and are never returned. A User is `UNVERIFIED` until a one-time code from the simulated channel is confirmed ([SM-ACCOUNT-001](STATE_MACHINES.md#sm-account-001)). Verification codes live 15 minutes, are single-use, and only the newest is valid; at most 5 resends per hour. Five consecutive failed sign-ins lock sign-in for 15 minutes.
+2. **Verification gate:** `UNVERIFIED` Users may browse. Checkout, payment, Shop registration and after-sales requests require `ACTIVE`.
+3. **Addresses:** up to 10 per User, exactly one default, required recipient name, phone and address lines. Accepted Orders keep their own address snapshot.
+4. **Shop roles (one role per Shop membership):** `OWNER`, `PRODUCT_EDITOR`, `INVENTORY_CLERK`, `FULFILLMENT_OPERATOR`, `AFTERSALES_AGENT`, `VIEWER`. Only `OWNER` manages operators and sees every Shop permission; a role never carries rights in another Shop.
+5. **Shop permission matrix** (allowed = ✔, otherwise denied):
+
+| Action (use case) | OWNER | PRODUCT_EDITOR | INVENTORY_CLERK | FULFILLMENT_OPERATOR | AFTERSALES_AGENT | VIEWER |
+| :--- | :-: | :-: | :-: | :-: | :-: | :-: |
+| Manage operators (UC-002) | ✔ | | | | | |
+| Create/edit Product and SKUs, submit/withdraw (UC-004/005) | ✔ | ✔ | | | | |
+| Adjust stock (UC-007) | ✔ | | ✔ | | | |
+| Confirm/reject/pack/hand over, create Shipment (UC-013/014) | ✔ | | | ✔ | | |
+| View Shop Orders and tracking | ✔ | | ✔ | ✔ | ✔ | ✔ |
+| Respond to after-sales requests (UC-016/017) | ✔ | | | | ✔ | |
+| Restock after verified return inspection (UC-017) | ✔ | | ✔ | | | |
+| Manage Shop vouchers (UC-019) | ✔ | | | | | |
+| View Shop reports (UC-023) | ✔ | | | | | ✔ |
+
+6. **Internal roles:** `ADMIN` (categories, internal accounts and roles, platform promotions, forbidden-word list; not the default Product reviewer), `MODERATOR` (Product and Shop review), `SUPPORT` (dispute adjudication, refund execution, payment exception disposition), `OPERATIONS` (violations, order intervention, reconciliation inspection). An internal role never implies Buyer or Shop rights; the internal action is always attributed to the internal role.
+7. **Buyer ownership:** cart, addresses, Orders, payment groups and disputes are readable and changeable only by their owning Buyer, except the permitted Shop-order and staff views above. A Shop operator sees only that Shop's Order data and the delivery details needed for fulfillment, never sibling-Shop or group data.
+8. **Denial:** an unauthorized action changes no protected data and, where audited, leaves a denial record ([BR-AUDIT-001](#br-audit-001)).
+
+### Coverage and limits
+
+[UC-001](USE_CASES/UC-001-manage-account-addresses.md), [UC-002](USE_CASES/UC-002-register-manage-shop.md), [UC-003](USE_CASES/UC-003-maintain-categories.md), [UC-024](USE_CASES/UC-024-record-audit.md) and the permission checks in UC-004 through UC-017; NFR-001.
+
+<a id="br-shop-001"></a>
+## BR-SHOP-001 — Shop registration and eligibility
+
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-004 and OQ-005.
+- Owner: Project owner.
+- Scope/source: SC-009/016; [UC-002](USE_CASES/UC-002-register-manage-shop.md), [SM-SHOP-001](STATE_MACHINES.md#sm-shop-001).
+
+### Rules
+
+1. A verified User may own at most 3 Shops. Shop names are unique case-insensitively across the platform.
+2. A Shop is created `PENDING_REVIEW`; only a Moderator approval makes it `ACTIVE`. Rejection requires a reason and allows a corrected new registration.
+3. Only an `ACTIVE` Shop may own purchasable Products, receive Orders or run fulfillment. Existing Orders of a Shop that later becomes `RESTRICTED` or `SUSPENDED` continue under their own rules until a staff intervention decides otherwise (UC-021/022).
+4. The first accepted Moderator decision is final for one registration; repeats return the same outcome.
+5. Shop-level deadlines (for example Seller confirmation) belong to the Shop and are unaffected by operator changes.
+
+### Coverage and limits
+
+UC-002; SM-SHOP-001; NFR-001/004. Sanctions, appeals and recovery from restriction remain UC-021/OQ-004.
+
+<a id="br-category-001"></a>
+## BR-CATEGORY-001 — Category hierarchy and attribute schemas
+
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-002 and OQ-021.
+- Owner: Project owner.
+- Scope/source: SC-017; [UC-003](USE_CASES/UC-003-maintain-categories.md).
+
+### Rules
+
+1. Hierarchy depth is at most 3 levels. Sibling names are unique. Only `ACTIVE` leaf categories accept new listings. A category with Products cannot become a non-leaf.
+2. Category states: `DRAFT` → `ACTIVE` → `INACTIVE` (reactivation allowed). Deactivation blocks new listing/submission only.
+3. Attribute types are `TEXT`, `NUMBER`, `ENUM`, `BOOLEAN`, with required/optional and filterable flags and allowed values for `ENUM`. Attribute identity is stable; every change creates an immutable schema version.
+4. Validation of a submission uses the schema version effective at its validation moment. Existing Products are not automatically re-reviewed or hidden by a schema change; a later risky edit or submission must satisfy the current schema.
+5. Retiring an attribute or value never erases stored Product values.
+
+### Coverage and limits
+
+UC-003/004/005/008; BR-PROD-001. Field limits are accepted in [OQ-002](OPEN_DECISIONS.md#oq-002); hiding existing Products under a deactivated category needs an explicit intervention (OQ-004).
+
+<a id="br-audit-001"></a>
+## BR-AUDIT-001 — Audit inventory and record integrity
+
+- Status: Accepted; owner confirmed on 2026-10-07 under OQ-005 and OQ-012.
+- Owner: Project owner.
+- Scope/source: SC-022; [UC-024](USE_CASES/UC-024-record-audit.md), [NFR-004](NON_FUNCTIONAL_REQUIREMENTS.md#nfr-004).
+
+### Rules
+
+1. **Inventory:** account/credential/address changes; Shop registration, review and role changes; category/attribute changes; Product content and operational edits, submission, withdrawal, review; stock adjustments and hold transitions; checkout acceptance, payment outcomes, cancellation/closure; fulfillment and Shipment progress; dispute, return receipt, restock and refund decisions; staff interventions; denied attempts for protected actions.
+2. Each record holds actor or partner/system identity, action, resource, changed data, correlation identifier and authoritative timestamp.
+3. A business change and its record take effect together; otherwise neither applies.
+4. Records are append-only. Sensitive data (credentials, codes, callback secrets, full payment/address data) is excluded or redacted.
+5. Viewing is limited to authorized internal roles and Shop owners for their own Shop. Retention is a confirmed demo period (OQ-012).
+
+### Coverage and limits
+
+UC-024 and the audit criterion of each use case; NFR-004. Retention length and failed-attempt breadth stay open.
 
 ## Rules not yet specified
 

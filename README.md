@@ -2,7 +2,7 @@
 
 A learning project for end-to-end marketplace flows and software delivery. This repository currently contains product and requirements documentation; application implementation has not started.
 
-Start with the [project context](docs/PROJECT_CONTEXT.md) and [documentation map](docs/README.md). The project is in **Phase 2 — Requirements Specification, in progress** (activity 3 of the 11-activity lifecycle); its exit gate has not passed.
+Start with the [project context](docs/PROJECT_CONTEXT.md) and [learning plan](docs/01-product/LEARNING_PLAN.md). The project is in **Phase 3 — provisional domain analysis for Part 1 publication/moderation**. The owner learns by modeling, choosing trade-offs, implementing and running experiments; other features are deferred. No whole-MVP gate or application implementation is complete.
 
 - [Product scope](docs/01-product/FUNCTIONAL_SCOPE.md)
 - [Requirements and current work](docs/02-requirements/README.md)

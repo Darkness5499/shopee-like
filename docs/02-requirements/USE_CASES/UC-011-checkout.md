@@ -1,5 +1,8 @@
 # UC-011 — Checkout a multi-shop cart
 
+- Implementation status: Not implemented — deferred; closed for current work. Resume only when the owner selects a later part.
+- Planning authority: [Learning plan](../../01-product/LEARNING_PLAN.md); document maturity below is separate from implementation status.
+
 ## Metadata
 
 - Status: Draft; grouping, atomicity, snapshots, purchase ordering, and payment/reservation policy are Proposed under OQ-007/OQ-008. Accepted BR-PROD-002 blocks new purchases of review-hidden Products.

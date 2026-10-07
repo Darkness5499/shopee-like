@@ -1,5 +1,8 @@
 # UC-010 — Manage a multi-shop cart
 
+- Implementation status: Not implemented — deferred; closed for current work. Resume only when the owner selects a later part.
+- Planning authority: [Learning plan](../../01-product/LEARNING_PLAN.md); document maturity below is separate from implementation status.
+
 ## Metadata
 
 - Status: Draft; cart presentation, quantity validation, and price-change handling are Proposed under OQ-019. Review-related hiding and blocked new purchases follow Accepted BR-PROD-002.

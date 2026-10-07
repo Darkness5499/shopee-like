@@ -1,5 +1,8 @@
 # UC-007 — Adjust and protect SKU inventory
 
+- Implementation status: Not implemented — deferred; closed for current work. Resume only when the owner selects a later part.
+- Planning authority: [Learning plan](../../01-product/LEARNING_PLAN.md); document maturity below is separate from implementation status.
+
 ## Metadata
 
 - Status: Draft; quantity accounting, adjustment bounds, reservation states, concurrency, and repeated-operation behavior below are Proposed under OQ-008. Payment grouping and partner-result handling remain Proposed under OQ-007/OQ-015. No new product policy is Accepted by this specification.

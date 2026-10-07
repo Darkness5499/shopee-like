@@ -1,5 +1,8 @@
 # UC-004 — Create or update a Product and its SKUs
 
+- Implementation status: Not implemented — active core design slice (Part 1).
+- Planning authority: [Learning plan](../../01-product/LEARNING_PLAN.md); document maturity below is separate from implementation status.
+
 ## Metadata
 
 - Status: Draft; initial `DRAFT` state code and unconfirmed handling are Proposed.

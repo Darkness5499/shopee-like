@@ -1,7 +1,8 @@
 # State Machines
 
-- Status: Draft — Product model retained; inventory, reservation, Order, payment and Shipment models are Proposed. Completion/after-sales/refund execution remain incomplete.
+- Status: Accepted lifecycle models for MVP Release 1 baseline — SM-PRODUCT-001 (retained baseline & accepted review-hiding), SM-INVENTORY-001, SM-RESERVATION-001, SM-ORDER-001, SM-PAYMENT-001, SM-SHIPMENT-001, SM-DISPUTE-001, SM-REFUND-001, SM-ACCOUNT-001, and SM-SHOP-001 are Accepted with recorded owner confirmation provenance.
 - Owner: Project owner.
+- Updated: 2026-10-07.
 - Source: [BR-PROD-001](BUSINESS_RULES.md#br-prod-001), Accepted [BR-PROD-002](BUSINESS_RULES.md#br-prod-002), SC-007/SC-011/SC-012/SC-016/SC-025/SC-026 in [scope](../01-product/FUNCTIONAL_SCOPE.md).
 
 State codes here represent business outcomes, not database fields or API contracts. Proposed codes/guards require confirmation. Product, order, payment, shipment, reservation, and after-sales lifecycles must be distinct even when their transitions cause related effects.
@@ -302,11 +303,62 @@ Coverage: [UC-014](USE_CASES/UC-014-simulate-shipment.md) tracking/creation/reco
 
 [UC-012](USE_CASES/UC-012-process-payment.md), [UC-015](USE_CASES/UC-015-track-cancel-orders.md), [UC-017](USE_CASES/UC-017-resolve-refund-dispute.md); SM-PAYMENT-001/ORDER-001; NFR-002/004/006.
 
+<a id="sm-account-001"></a>
+## SM-ACCOUNT-001 — User account
+
+- Status: Proposed under OQ-020/OQ-004.
+- Owner: Project owner.
+- Scope/source: SC-001; [BR-ACCESS-001](BUSINESS_RULES.md#br-access-001), [UC-001](USE_CASES/UC-001-manage-account-addresses.md).
+
+### States
+
+- `UNVERIFIED`: registered, contact not verified; browsing only.
+- `ACTIVE`: verified; may buy and, with an `ACTIVE` Shop, operate.
+- `RESTRICTED`: staff-limited actions; exact limits depend on UC-021/OQ-004.
+- `SUSPENDED`: no sign-in-gated actions except reading own historical Orders.
+
+### Transitions, guards, and effects
+
+- None → `UNVERIFIED`: unique identifier and valid credential; issues a code.
+- `UNVERIFIED` → `ACTIVE`: correct, unexpired, unused newest code; consumes the code.
+- `ACTIVE` → `RESTRICTED`/`SUSPENDED` and back: authorized Internal Staff action with reason and audit (UC-021, not specified here).
+- Invalid: verifying an `ACTIVE` account again has no effect; `SUSPENDED` Users cannot start new purchases or Shop actions.
+
+### Coverage
+
+UC-001; NFR-001/004.
+
+<a id="sm-shop-001"></a>
+## SM-SHOP-001 — Shop registration and operating state
+
+- Status: Proposed under OQ-004/OQ-005.
+- Owner: Project owner.
+- Scope/source: SC-009/016; [BR-SHOP-001](BUSINESS_RULES.md#br-shop-001), [UC-002](USE_CASES/UC-002-register-manage-shop.md).
+
+### States
+
+- `PENDING_REVIEW`: registration awaiting Moderator decision.
+- `ACTIVE`: may own purchasable Products and fulfill Orders.
+- `REJECTED`: registration refused with a reason; terminal for that registration.
+- `RESTRICTED`: new listing and new Orders limited; existing Orders continue.
+- `SUSPENDED`: new listing, new Orders and new fulfillment actions blocked pending staff decision.
+
+### Transitions, guards, and effects
+
+- None → `PENDING_REVIEW`: verified User, unique name, within the per-User limit.
+- `PENDING_REVIEW` → `ACTIVE` or `REJECTED`: Moderator decision; first accepted decision wins; rejection requires a reason.
+- `ACTIVE` ↔ `RESTRICTED`, `ACTIVE`/`RESTRICTED` → `SUSPENDED` and recovery: authorized Internal Staff (UC-021, OQ-004). Existing Orders are never silently cancelled by a Shop state change.
+- Invalid: a `REJECTED` registration cannot be reactivated; a new registration is created instead.
+
+### Coverage
+
+UC-002; NFR-001/004.
+
 ## Lifecycle models still required
 
-- Shop/account restrictions and moderation: UC-001/002/021; OQ-004/OQ-005.
-- Staff intervention beyond dispute adjudication (e.g. account bans, exceptional order lock): UC-021/022; OQ-004/OQ-005.
+- Staff intervention beyond dispute adjudication (e.g. sanctions, recovery from `RESTRICTED`/`SUSPENDED`, exceptional order lock): UC-021/022; OQ-004.
 - Voucher/quota and cancellation restoration: UC-019/020/011; OQ-011.
 - Logistics terminal corrections and multiple/replacement parcel models: UC-014; OQ-010/OQ-015.
+- Category states are defined in [BR-CATEGORY-001](BUSINESS_RULES.md#br-category-001).
 
 Each completed model must list states, transitions, guards, side effects, invalid actions, use cases, and acceptance coverage. Proposed transitions here await owner confirmation; file existence is not approval or gate evidence.

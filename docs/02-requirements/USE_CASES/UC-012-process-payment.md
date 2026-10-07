@@ -1,5 +1,8 @@
 # UC-012 — Pay and process simulated payment outcomes
 
+- Implementation status: Not implemented — deferred; closed for current work. Resume only when the owner selects a later part.
+- Planning authority: [Learning plan](../../01-product/LEARNING_PLAN.md); document maturity below is separate from implementation status.
+
 ## Metadata
 
 - Status: Draft specification; new grouping, paid-reservation, expiry, identity, recovery, and reconciliation policies are **Proposed**, pending OQ-007/OQ-008/OQ-015. No payment policy is newly Accepted by this document.
